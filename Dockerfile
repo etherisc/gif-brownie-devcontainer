@@ -20,7 +20,7 @@ USER vscode
 RUN curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
 RUN echo "eval \"\$(starship init bash)\"" >> ~/.bashrc && echo "eval \"\$(starship init zsh)\"" >> ~/.zshrc
 RUN mkdir -p /home/vscode/.config/
-COPY .devcontainer/starship.toml /home/vscode/.config/starship.toml
+COPY starship.toml /home/vscode/.config/starship.toml
 
 # 2) install thefuck
 RUN pip3 install thefuck --user \
