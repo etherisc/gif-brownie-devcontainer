@@ -38,9 +38,7 @@ RUN echo 'eval "$(mcfly init zsh)"' >> ~/.zshrc \
 RUN wget https://raw.githubusercontent.com/eth-brownie/brownie/master/requirements.txt -O /tmp/pip-requirements.txt 
 
 RUN pip install -r /tmp/pip-requirements.txt
-RUN pip install eth-brownie \
-    && pip install fastapi \
-    && pip install uvicorn 
+RUN pip install eth-brownie 
 
 # [Optional] Uncomment this line to install global node packages.
 RUN npm install -g ganache-cli solhint prettier prettier-plugin-solidity solhint-plugin-prettier
