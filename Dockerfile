@@ -1,6 +1,3 @@
-ARG VERSION_OPEN_ZEPPELIN=4.7.0
-ARG VERSION_CHAINLINK=1.6.0
-
 # [Choice] Python version (use -bullseye variants on local arm64/Apple Silicon): 3, 3.10, 3.9, 3.8, 3.7, 3.6, 3-bullseye, 3.10-bullseye, 3.9-bullseye, 3.8-bullseye, 3.7-bullseye, 3.6-bullseye, 3-buster, 3.10-buster, 3.9-buster, 3.8-buster, 3.7-buster, 3.6-buster
 ARG VARIANT=3-bullseye
 FROM mcr.microsoft.com/vscode/devcontainers/python:${VARIANT}
@@ -51,6 +48,8 @@ RUN wget -O /home/vscode/.solcx/solc-v0.7.2 https://binaries.soliditylang.org/li
     && chmod 755 /home/vscode/.solcx/solc*
 
 # Download openzeppelin and chainlink depedencies (large and slow)
+ARG VERSION_OPEN_ZEPPELIN=4.7.0
+ARG VERSION_CHAINLINK=1.6.0
 RUN wget -O /tmp/v${VERSION_OPEN_ZEPPELIN}.tar.gz https://github.com/OpenZeppelin/openzeppelin-contracts/archive/refs/tags/v${VERSION_OPEN_ZEPPELIN}.tar.gz \
     && wget -O /tmp/v${VERSION_CHAINLINK}.tar.gz https://github.com/smartcontractkit/chainlink/archive/refs/tags/v${VERSION_CHAINLINK}.tar.gz
 RUN mkdir -p /home/vscode/.brownie/packages/OpenZeppelin \
