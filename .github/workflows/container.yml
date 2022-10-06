@@ -8,7 +8,7 @@ on:
     - '*'
 
 jobs:
-  build:
+  build_container:
     runs-on: ubuntu-latest
     if: github.actor != 'dependabot[bot]'
     steps:
@@ -22,7 +22,16 @@ jobs:
       - name: Publish container
         run: docker push ghcr.io/etherisc/gif-brownie-container:${{ env.GITHUB_REF_SLUG }}
 
-      - name: Build container for devconainer
+  build_dev_container:
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    steps:
+      - uses: actions/checkout@v1
+      - uses: rlespinasse/github-slug-action@v2.x
+      - name: Login to registry
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u etherisc --password-stdin
+
+      - name: Build container for devcontainer
         run: docker build -f Dockerfile.devcontainer -t ghcr.io/etherisc/gif-brownie-devcontainer:${{ env.GITHUB_REF_SLUG }} .
       - name: Publish container for devcontainer
         run: docker push ghcr.io/etherisc/gif-brownie-devcontainer:${{ env.GITHUB_REF_SLUG }}
