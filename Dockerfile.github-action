@@ -1,8 +1,10 @@
 FROM python:3.9-bullseye
 
 ENV NODE_VERISON 16
-ENV NVM_DIR /usr/local/nvm
+ENV NVM_DIR /github/home/.nvm
 SHELL ["/bin/bash", "-c"]
+
+WORKDIR /github/home
 
 # install node 16 via nvm
 RUN mkdir -p ${NVM_DIR} \
@@ -11,9 +13,6 @@ RUN mkdir -p ${NVM_DIR} \
     && nvm install $NODE_VERISON \
     && nvm alias default $NODE_VERSION \
     && nvm use default 
-
-
-WORKDIR /setup
 
 COPY prepare_environment.sh .
 RUN ./prepare_environment.sh
