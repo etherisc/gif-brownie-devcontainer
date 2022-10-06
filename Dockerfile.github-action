@@ -5,6 +5,7 @@ ENV NVM_DIR /github/home/.nvm
 SHELL ["/bin/bash", "-c"]
 
 WORKDIR /github/home
+ENV HOME /github/home
 
 # install node 16 via nvm
 RUN mkdir -p ${NVM_DIR} \
@@ -17,4 +18,4 @@ RUN mkdir -p ${NVM_DIR} \
 COPY prepare_environment.sh .
 RUN ./prepare_environment.sh
 
-WORKDIR /workspace
+COPY .bashrc .
