@@ -1,1 +1,1 @@
-source ~/.nvm/nvm.sh
+source /usr/local/nvm/nvm.sh
